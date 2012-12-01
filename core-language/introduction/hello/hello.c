@@ -1,4 +1,4 @@
-/**
+/*
  * This is a very simple C program.
  * Compile first, then run.
  *
