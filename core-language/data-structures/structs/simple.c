@@ -16,7 +16,8 @@ main (int argc, char **argv)
     volume = henry_snack.length * base_area / 3.0;
     water_mass = volume * henry_snack.water_content;
 
-    printf ("Henry's carrot contains %.3g grams of water.\n", water_mass);
+    printf ("Henry's carrot contains %.3g grams of water and %s smooth.\n",
+            water_mass, henry_snack.num_ridges == 0 ? "is" : "is not");
 
     return 0;
 }
