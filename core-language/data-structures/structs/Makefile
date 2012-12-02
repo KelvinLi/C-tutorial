@@ -1,4 +1,4 @@
-bin := simple nested
+bin := nested simple struct-array
 
 .PHONY : all
 all : $(bin)
