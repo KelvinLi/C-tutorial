@@ -1,19 +1,19 @@
-bin := libeasy.so
+lib := libeasy.so
 objects := square.o util.o
 CFLAGS := -fPIC
 
-$(bin) : $(objects)
-	$(CC) -shared -Wl,-soname,$(bin) -o $(bin) $(objects) -lc
+$(lib) : $(objects)
+	$(CC) -shared -Wl,-soname,$(lib) -o $(lib) $(objects) -lc
 
 square.o : libeasy.h
 
 .PHONY : clean
 clean :
-	$(RM) $(bin) $(objects)
+	$(RM) $(lib) $(objects)
 
 .PHONY : install
-install : $(bin)
+install : $(lib)
 	install -d $(PREFIX)/$(PATH_LIB)
 	install -d $(PREFIX)/$(PATH_INCLUDE)
-	install -t $(PREFIX)/$(PATH_LIB) $(bin)
-	install -t $(PREFIX)/$(PATH_INCLUDE) libeasy.h
+	install -m 644 -t $(PREFIX)/$(PATH_LIB) $(lib)
+	install -m 644 -t $(PREFIX)/$(PATH_INCLUDE) libeasy.h

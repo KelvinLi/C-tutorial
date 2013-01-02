@@ -1,9 +1,10 @@
 include config.mk
 
-.PHONY : simple
-simple : libeasy
-	$(MAKE) -C simple install
+actions := install clean
 
-.PHONY : libeasy
-libeasy :
-	$(MAKE) -C libeasy install
+.PHONY : $(actions)
+$(actions) : % :
+	$(MAKE) -C libeasy $@
+	$(MAKE) -C simple $@
+
+install :
