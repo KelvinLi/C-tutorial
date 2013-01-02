@@ -1,11 +1,15 @@
 bin := simple
 objects := main.o
 
-CFLAGS := -Wl,-rpath=../$(PATH_LIB),-L$(PREFIX)/$(PATH_LIB),-leasy \
-          -I$(PREFIX)/$(PATH_INCLUDE)
+libopts := -leasy
+CFLAGS := -I$(PREFIX)/$(PATH_INCLUDE) \
+          -Wl,-rpath=../$(PATH_LIB),-L$(PREFIX)/$(PATH_LIB) \
+          $(libopts)
 
 $(bin) : $(objects)
 	$(CC) $(CFLAGS) -o $(bin) $(objects)
+
+main.o : $(PREFIX)/$(PATH_INCLUDE)
 
 .PHONY : clean
 clean :
