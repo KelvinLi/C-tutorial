@@ -7,4 +7,4 @@ $(bin) : % : %.c
 
 .PHONY : clean
 clean :
-	rm -f $(bin)
+	$(RM) $(bin)

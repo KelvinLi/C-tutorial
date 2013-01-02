@@ -4,4 +4,4 @@ hello : hello.c
 
 .PHONY : clean
 clean :
-	rm -f hello
+	$(RM) hello
