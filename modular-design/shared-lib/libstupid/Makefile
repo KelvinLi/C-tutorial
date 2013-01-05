@@ -1,12 +1,12 @@
-lib := libeasy.so
-objects := conflict.o square.o util.o
+lib := libstupid.so
+objects := average.o conflict.o util.o
 CFLAGS := -fPIC -fvisibility=hidden
 
 $(lib) : $(objects)
 	$(CC) -shared -Wl,-soname,$(lib) -o $(lib) $(objects) -lc
 
+average.o : conflict.h libstupid.h
 conflict.o : conflict.h
-square.o : conflict.h libeasy.h
 
 .PHONY : clean
 clean :
@@ -17,4 +17,4 @@ install : $(lib)
 	install -d $(PREFIX)/$(PATH_LIB)
 	install -d $(PREFIX)/$(PATH_INCLUDE)
 	install -m 644 -t $(PREFIX)/$(PATH_LIB) $(lib)
-	install -m 644 -t $(PREFIX)/$(PATH_INCLUDE) libeasy.h
+	install -m 644 -t $(PREFIX)/$(PATH_INCLUDE) libstupid.h

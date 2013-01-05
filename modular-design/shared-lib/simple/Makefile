@@ -1,7 +1,7 @@
 bin := simple
 objects := main.o
 
-libopts := -leasy
+libopts := -lstupid -leasy
 CFLAGS := -I$(PREFIX)/$(PATH_INCLUDE) \
           -Wl,-rpath=../$(PATH_LIB),-L$(PREFIX)/$(PATH_LIB) \
           $(libopts)
