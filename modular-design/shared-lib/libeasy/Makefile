@@ -3,7 +3,7 @@ objects := conflict.o square.o util.o
 CFLAGS := -fPIC -fvisibility=hidden
 
 $(lib) : $(objects)
-	$(CC) -shared -Wl,-soname,$(lib) -o $(lib) $(objects) -lc
+	$(LD) -shared -soname $(lib) -o $(lib) $(objects)
 
 conflict.o : conflict.h
 square.o : conflict.h libeasy.h

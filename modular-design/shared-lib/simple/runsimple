@@ -1,0 +1,9 @@
+#!/bin/sh
+
+owd="$PWD"
+cd $(dirname "$0")/../
+root="$PWD"
+cd "$owd"
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$root/lib"
+exec "$root/lib/simple"

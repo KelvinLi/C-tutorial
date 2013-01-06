@@ -3,7 +3,7 @@ objects := average.o conflict.o util.o
 CFLAGS := -fPIC -fvisibility=hidden
 
 $(lib) : $(objects)
-	$(CC) -shared -Wl,-soname,$(lib) -o $(lib) $(objects) -lc
+	$(LD) -shared -soname=$(lib) -o $(lib) $(objects)
 
 average.o : conflict.h libstupid.h
 conflict.o : conflict.h
