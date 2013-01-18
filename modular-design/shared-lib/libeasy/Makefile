@@ -1,6 +1,6 @@
 lib := libeasy.so
 objects := conflict.o square.o util.o
-CFLAGS := -fPIC -fvisibility=hidden
+CFLAGS += -fPIC -fvisibility=hidden
 
 $(lib) : $(objects)
 	$(LD) -shared -soname $(lib) -o $(lib) $(objects)

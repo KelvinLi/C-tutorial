@@ -7,5 +7,3 @@ $(actions) : % :
 	$(MAKE) -C libeasy $@
 	$(MAKE) -C libstupid $@
 	$(MAKE) -C simple $@
-
-install :

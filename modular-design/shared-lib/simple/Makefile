@@ -1,7 +1,7 @@
 bin := simple
 objects := main.o
 
-CFLAGS := -I$(PREFIX)/$(PATH_INCLUDE)
+CFLAGS += -I$(PREFIX)/$(PATH_INCLUDE)
 
 ldflags := -Wl,--library-path=$(PREFIX)/$(PATH_LIB) \
            -lstupid -leasy

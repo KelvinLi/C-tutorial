@@ -1,6 +1,6 @@
 lib := libstupid.so
 objects := average.o conflict.o util.o
-CFLAGS := -fPIC -fvisibility=hidden
+CFLAGS += -fPIC -fvisibility=hidden
 
 $(lib) : $(objects)
 	$(LD) -shared -soname=$(lib) -o $(lib) $(objects)
