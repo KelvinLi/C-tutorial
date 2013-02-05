@@ -1,45 +1,40 @@
 #include <stdio.h>
+#define PRIMES_SIZE 6
 
-/* prints to standard output an array of non-negative numbers,
- * terminating at a negative number.
- */
 void
-display_status (int positives[])
+display_status (int primes[])
 {
     int i;
     printf ("[");
-    if (positives[0] < 0)
-        goto end;
-    for (i = 0; positives[i + 1] >= 0; i++)
-        printf ("%d, ", positives[i]);
-    printf ("%d", positives[i]);
-end:
+    for (i = 0; i < PRIMES_SIZE - 1; i++)
+        printf ("%d, ", primes[i]);
+    printf ("%d", primes[i]);
     printf ("]\n");
 }
 
 void
-boil (int positives[])
+boil (int primes[])
 {
     int sum = 0;
     int i;
-    for (i = 0; positives[i] >= 0; i++) {
-        sum += positives[i];
-        positives[i] = sum;
+    for (i = 0; i < PRIMES_SIZE; i++) {
+        sum += primes[i];
+        primes[i] = sum;
     }
 }
 
 int
 main (int argc, char **argv)
 {
-    int positives[] = {3, 78, 1, 0, 992, -1};
+    int primes[PRIMES_SIZE] = {2, 3, 5, 7, 11, 13};
 
     printf ("Initial: ");
-    display_status (positives);
+    display_status (primes);
 
-    boil (positives);
+    boil (primes);
 
     printf ("After boil(): ");
-    display_status (positives);
+    display_status (primes);
 
     return 0;
 }
