@@ -1,4 +1,4 @@
-bin := exit-status
+bin := cmd-args exit-status
 
 .PHONY : all
 all : $(bin)
