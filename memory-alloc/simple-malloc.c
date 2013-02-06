@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -8,13 +7,15 @@
 void
 print_help (const char *name)
 {
-    printf ("Usage: %s <number>...\n", name);
+    printf ("Usage: %s <number>...\n\n", name);
+    printf ("Given a list of integers (a, b, c, d, ...),\n"
+            "repeatedly computes (b - a, c - b, d - c, ...).\n");
 }
 
 void
-print_array (long int *nums, int size)
+print_array (long int *nums, size_t size)
 {
-    int i;
+    size_t i;
     printf ("[");
     for (i = 0; i < size - 1; i++)
         printf ("%ld, ", nums[i]);
@@ -22,19 +23,31 @@ print_array (long int *nums, int size)
 }
 
 void
-get_differences (long int *out, long int *in, int size)
+get_differences (long int *out, long int *in, size_t size)
 {
-    int i;
+    size_t i;
     for (i = 0; i < size - 1; i++)
         out[i] = in[i + 1] - in[i];
     out[i] = in[0] - in[i];
 }
 
+void
+differences_loop (long int *primary, long int *secondary, size_t size)
+{
+    size_t i;
+    for (i = 0; i < LOOP_COUNT; i++) {
+        get_differences (secondary, primary, size);
+        print_array (secondary, size);
+        get_differences (primary, secondary, size);
+        print_array (primary, size);
+    }
+}
+
 int
-parse_strings(long int *out, char **strings, int size)
+parse_strings(long int *out, char **strings, size_t size)
 {
     char *tail;
-    int i;
+    size_t i;
     for (i = 0; i < size; i++) {
         errno = 0;
         out[i] = strtol (strings[i], &tail, 10);
@@ -49,9 +62,8 @@ main (int argc, char **argv)
 {
     long int *buffer1;
     long int *buffer2;
-    int buffer_size;
+    size_t buffer_size;
     int ret;
-    int i;
 
     if (argc <= 1) {
         print_help (argv[0]);
@@ -69,12 +81,9 @@ main (int argc, char **argv)
         print_help (argv[0]);
         goto fail;
     }
-    for (i = 0; i < LOOP_COUNT; i++) {
-        get_differences (buffer2, buffer1, buffer_size);
-        print_array (buffer2, buffer_size);
-        get_differences (buffer1, buffer2, buffer_size);
-        print_array (buffer1, buffer_size);
-    }
+
+    differences_loop (buffer1, buffer2, buffer_size);
+
     free (buffer1);
     free (buffer2);
     return 0;
