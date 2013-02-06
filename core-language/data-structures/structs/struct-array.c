@@ -20,7 +20,8 @@ main (int argc, char **argv)
         layers_volume += smelly.layers[i].area * smelly.layers[i].thickness;
     }
 
-    printf ("Average density of layers: %.3g\n", smelly.weight / layers_volume);
+    printf ("Average density of layers: %.3g\n",
+            smelly.weight / layers_volume);
 
     return 0;
 }
