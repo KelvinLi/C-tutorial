@@ -1,50 +1,59 @@
 #include <stdio.h>
 
 struct tomato {
-    int water;
     int redness;
+    char name[10];
 };
 
 void
 display_status (struct tomato *t)
 {
-    printf ("tomato{water=%d redness=%d}\n", t->water, t->redness);
+    printf ("tomato{redness=(%d) name=(%s)}\n",
+            t->redness, t->name);
 }
 
 void
 fry (struct tomato t)
 {
-    t.water = t.water * t.water;
     t.redness = t.redness / 2;
+    t.name[0] = 'x';
+    t.name[1] = 'y';
+    t.name[2] = 'z';
+    printf ("In fry(), I got: ");
+    display_status (&t);
 }
 
 void
 boil (struct tomato *t)
 {
-    t->water = t->water * t->water;
+    char newname[10] = "boiled";
     t->redness = t->redness / 2;
+    t->name[0] = 'x';
+    t->name[1] = 'y';
+    t->name[2] = 'z';
+    printf ("In boil(), I got: ");
+    display_status (t);
 }
 
 int
 main (int argc, char **argv)
 {
-    struct tomato *thomp;
-    struct tomato thom = {5, 31};
-
-    thomp = &thom;
+    struct tomato thom = {112, "Thomas"};
 
     printf ("Initial: ");
-    display_status (thomp);
+    display_status (&thom);
+    printf ("\n");
 
-    fry (*thomp);
+    fry (thom);
 
     printf ("After fry(): ");
-    display_status (thomp);
+    display_status (&thom);
+    printf ("\n");
 
-    boil (thomp);
+    boil (&thom);
 
     printf ("After boil(): ");
-    display_status (thomp);
+    display_status (&thom);
 
     return 0;
 }
