@@ -1,4 +1,4 @@
-bin := define if
+bin := define if typedef
 
 .PHONY : all
 all : $(bin)
