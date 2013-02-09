@@ -1,4 +1,4 @@
-bin := arg-array arg-primitive arg-struct func-pointer simple
+bin := arg-array arg-pointer arg-primitive arg-struct func-pointer simple
 
 .PHONY : all
 all : $(bin)

@@ -3,7 +3,7 @@
 void
 display_status (int x)
 {
-    printf ("value is %d.\n", x);
+    printf ("%d\n", x);
 }
 
 void
