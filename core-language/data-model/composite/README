@@ -1,0 +1,51 @@
+The "simple" data model concepts (array, pointer, struct) can be combined in
+numerous ways:
+  - array of arrays      (array-multidim.c)
+  - array of pointers    (array-pointer.c)
+  - array of structs
+
+  - pointer to an array  (pointer-arith.c)
+  - pointer to a pointer
+  - pointer to a struct  (pointer-struct.c)
+
+  - struct of arrays
+  - struct of pointers   (struct-doll.c)
+  - struct of structs
+
+On the Distinction between Pointers and Arrays
+----------------------------------------------
+Pointers and arrays behave very similarly with respect to pointer arithmetic,
+dereferencing, and indexing. Thus, it is easy to confuse the two data types.
+However, their similarities end there.
+
+Storage:
+  - Declaring a pointer reserves space for a memory address.
+  - Declaring an array reserves a contiguous block.
+
+    The "sizeof" operator will reflect this difference.
+
+Re-assignment:
+  - Arrays cannot be reassigned -- this is conceptually meaningless, as arrays
+    are merely labels for the underlying storage space.
+  - The value of a pointer is a memory address, which can be changed; if
+    a pointer is reassigned to an array, the pointer's value will be the
+    address of the first element.
+
+Initialization at declaration:
+  - Array initialization sets the contents to defined, constant values.
+  - Pointer initialization is mostly unsurprising. The only "quirk" is
+    initializing a pointer to a string literal: the string will end up in a
+    special, read-only data segment of the process, and the pointer will take
+    its address. Modifying the string via the pointer will crash the process.
+    (great fun!)
+
+As function arguments:
+  - Pointers, as any other data type, are copied.
+  - Passing an array implicitly creates a new pointer to the first element. The
+    array contents are not touched.
+
+NULL value:
+  - Pointer values can be set to NULL, the zero address. Dereferencing such a
+    pointer will crash the process. (great fun!)
+  - "Setting an array to NULL" is meaningless. As a completely different
+    concept, the elements of an array can be set to zero.

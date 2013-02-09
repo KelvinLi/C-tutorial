@@ -1,0 +1,3 @@
+The examples here demonstrate constant initializers for arrays and structs.
+They are merely syntactic sugar. Initializing an array or struct
+element-by-element will do exactly the same thing.
