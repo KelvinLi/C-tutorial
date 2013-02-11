@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#define LOOP_COUNT 6
+#define LOOP_COUNT 5
 
 void
 print_help (const char *name)
@@ -16,16 +16,16 @@ print_help (const char *name)
 }
 
 void
-print_array (long int *nums, size_t size)
+print_buffer (long int *buffer, size_t size)
 {
     size_t i;
     for (i = 0; i < size - 1; i++)
-        printf ("%ld ", nums[i]);
-    printf ("%ld\n", nums[i]);
+        printf ("%ld ", buffer[i]);
+    printf ("%ld\n", buffer[i]);
 }
 
 void
-get_differences (long int *out, long int *in, size_t size)
+put_differences (long int *out, long int *in, size_t size)
 {
     size_t i;
     for (i = 0; i + 1 < size; i++)
@@ -37,11 +37,15 @@ void
 differences_loop (long int *primary, long int *secondary, size_t size)
 {
     size_t i;
-    for (i = 0; i < LOOP_COUNT; i++) {
-        get_differences (secondary, primary, size);
-        print_array (secondary, size);
-        get_differences (primary, secondary, size);
-        print_array (primary, size);
+    for (i = 0; i < LOOP_COUNT / 2; i++) {
+        put_differences (secondary, primary, size);
+        print_buffer (secondary, size);
+        put_differences (primary, secondary, size);
+        print_buffer (primary, size);
+    }
+    if (LOOP_COUNT % 2 == 1) {
+        put_differences (secondary, primary, size);
+        print_buffer (secondary, size);
     }
 }
 
@@ -50,8 +54,8 @@ parse_strings(long int *out, char **strings, size_t size)
 {
     char *tail;
     size_t i;
+    errno = 0;
     for (i = 0; i < size; i++) {
-        errno = 0;
         out[i] = strtol (strings[i], &tail, 10);
         if (errno || !tail || *tail != '\0')
             return -1;
@@ -64,22 +68,22 @@ main (int argc, char **argv)
 {
     long int *buffer1;
     long int *buffer2;
-    size_t buffer_size;
+    size_t size;
     int ret;
 
     if (argc <= 1)
         goto usagefail;
-    buffer_size = argc - 1;
-    buffer1 = alloca(sizeof (buffer1) * buffer_size);
-    buffer2 = alloca(sizeof (buffer2) * buffer_size);
+    size = argc - 1;
+    buffer1 = alloca(sizeof (buffer1) * size);
+    buffer2 = alloca(sizeof (buffer2) * size);
 
-    ret = parse_strings(buffer1, argv + 1, buffer_size);
+    ret = parse_strings(buffer1, argv + 1, size);
     if (ret) {
         printf ("failed to parse numbers\n");
         goto usagefail;
     }
 
-    differences_loop (buffer1, buffer2, buffer_size);
+    differences_loop (buffer1, buffer2, size);
     return 0;
 
 usagefail:
