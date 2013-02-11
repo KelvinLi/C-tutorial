@@ -28,7 +28,7 @@ void
 get_differences (long int *out, long int *in, size_t size)
 {
     size_t i;
-    for (i = 0; i < size - 1; i++)
+    for (i = 0; i + 1 < size; i++)
         out[i] = in[i + 1] - in[i];
     out[i] = in[0] - in[i];
 }
@@ -67,33 +67,22 @@ main (int argc, char **argv)
     size_t buffer_size;
     int ret;
 
-    if (argc <= 1) {
-        print_help (argv[0]);
-        return 1;
-    }
+    if (argc <= 1)
+        goto usagefail;
     buffer_size = argc - 1;
-    buffer1 = malloc(sizeof (buffer1) * buffer_size);
-    buffer2 = malloc(sizeof (buffer2) * buffer_size);
-    if (!buffer1 || !buffer2)
-        goto fail;
+    buffer1 = alloca(sizeof (buffer1) * buffer_size);
+    buffer2 = alloca(sizeof (buffer2) * buffer_size);
 
     ret = parse_strings(buffer1, argv + 1, buffer_size);
     if (ret) {
         printf ("failed to parse numbers\n");
-        print_help (argv[0]);
-        goto fail;
+        goto usagefail;
     }
 
     differences_loop (buffer1, buffer2, buffer_size);
-
-    free (buffer1);
-    free (buffer2);
     return 0;
 
-fail:
-    if (buffer1)
-        free (buffer1);
-    if (buffer2)
-        free (buffer2);
+usagefail:
+    print_help (argv[0]);
     return 1;
 }

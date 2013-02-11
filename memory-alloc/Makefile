@@ -1,4 +1,4 @@
-bin := simple-malloc
+bin := simple-alloca
 
 .PHONY : all
 all : $(bin)
