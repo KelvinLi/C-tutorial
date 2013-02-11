@@ -8,18 +8,20 @@ void
 print_help (const char *name)
 {
     printf ("Usage: %s <number>...\n\n", name);
-    printf ("Given a list of integers (a, b, c, d, ...),\n"
-            "repeatedly computes (b - a, c - b, d - c, ...).\n");
+    printf ("Given a list of integers (a_1, a_2, ..., a_n),\n"
+            "computes (a_2 - a_1, a_3 - a_2, ..., a_1 - a_n),\n"
+            "then repeats again on the output list.\n\n");
+    printf ("Example: %s 0 0 1 0 0\n"
+            "0 1 -1 0 0\n", name);
 }
 
 void
 print_array (long int *nums, size_t size)
 {
     size_t i;
-    printf ("[");
     for (i = 0; i < size - 1; i++)
-        printf ("%ld, ", nums[i]);
-    printf ("%ld]\n", nums[i]);
+        printf ("%ld ", nums[i]);
+    printf ("%ld\n", nums[i]);
 }
 
 void
