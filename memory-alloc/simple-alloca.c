@@ -74,8 +74,8 @@ main (int argc, char **argv)
     if (argc <= 1)
         goto usagefail;
     size = argc - 1;
-    buffer1 = alloca(sizeof (buffer1) * size);
-    buffer2 = alloca(sizeof (buffer2) * size);
+    buffer1 = alloca(sizeof (*buffer1) * size);
+    buffer2 = alloca(sizeof (*buffer2) * size);
 
     ret = parse_strings(buffer1, argv + 1, size);
     if (ret) {
