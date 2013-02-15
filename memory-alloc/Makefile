@@ -1,4 +1,4 @@
-bin := simple-alloca
+bin := simple-alloca simple-obstack
 
 .PHONY : all
 all : $(bin)
