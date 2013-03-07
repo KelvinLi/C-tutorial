@@ -26,7 +26,7 @@ count_weird (egg_count c)
 void
 display_veggie (veggie *v, count_fn f)
 {
-    printf ("Got %d groups\n", f(v->eggs));
+    printf ("Got %d groups\n", f (v->eggs));
 }
 
 int

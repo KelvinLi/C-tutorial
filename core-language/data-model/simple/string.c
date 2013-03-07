@@ -31,7 +31,7 @@ main (int argc, char **argv)
     for (i = 0; values[i] != '\0'; i++) {
         printf ("'%c', ", values[i]);
     }
-    printf("]\n");
+    printf ("]\n");
 
     printf ("The string: (%s)\n", values);
 

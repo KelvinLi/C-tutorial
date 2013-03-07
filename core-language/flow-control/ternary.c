@@ -7,6 +7,6 @@ main (int argc, char **argv)
     int b = 2;
     char x[] = "HI";
     char y[] = "BYE";
-    printf("Magic message is: %s\n", a > b ? x : y);
+    printf ("Magic message is: %s\n", a > b ? x : y);
     return 0;
 }

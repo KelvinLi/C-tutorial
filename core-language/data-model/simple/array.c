@@ -26,7 +26,7 @@ main (int argc, char **argv)
     for (i = 0; i < 5; i++) {
         printf ("%d, ", values[i]);
     }
-    printf("]\n");
+    printf ("]\n");
 
     return 0;
 }
