@@ -1,4 +1,6 @@
-bin := simple-alloca simple-obstack
+bin := simple-alloca simple-malloc simple-obstack
+
+override CFLAGS += -lm
 
 .PHONY : all
 all : $(bin)
