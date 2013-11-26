@@ -1,6 +1,6 @@
 #ifndef LIBSTUPID_CONFLICT_H
 #define LIBSTUPID_CONFLICT_H
 
-int colliding_name (void);
+const char *colliding_convert (int);
 
 #endif

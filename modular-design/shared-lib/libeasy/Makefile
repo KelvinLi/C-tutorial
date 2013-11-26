@@ -1,12 +1,12 @@
 lib := libeasy.so
-objects := conflict.o square.o util.o
+objects := conflict.o libeasy.o util.o
 CFLAGS += -fPIC -fvisibility=hidden
 
 $(lib) : $(objects)
 	$(LD) -shared -soname $(lib) -o $(lib) $(objects)
 
 conflict.o : conflict.h
-square.o : conflict.h libeasy.h
+libeasy.o : conflict.h libeasy.h
 
 .PHONY : clean
 clean :

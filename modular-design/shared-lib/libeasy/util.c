@@ -6,11 +6,11 @@ static void __attribute__ ((destructor)) my_fini (void);
 static void
 my_init (void)
 {
-    printf ("libeasy loaded\n");
+    fputs ("libeasy loaded\n", stdout);
 }
 
 static void
 my_fini (void)
 {
-    printf ("libeasy unloaded\n");
+    fputs ("libeasy unloaded\n", stdout);
 }

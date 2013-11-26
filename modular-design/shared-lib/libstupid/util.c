@@ -6,11 +6,11 @@ static void __attribute__ ((destructor)) my_fini (void);
 static void
 my_init (void)
 {
-    printf ("libstupid loaded\n");
+    fputs ("libstupid loaded\n", stdout);
 }
 
 static void
 my_fini (void)
 {
-    printf ("libstupid unloaded\n");
+    fputs ("libstupid unloaded\n", stdout);
 }

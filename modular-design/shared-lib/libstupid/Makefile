@@ -1,11 +1,11 @@
 lib := libstupid.so
-objects := average.o conflict.o util.o
+objects := libstupid.o conflict.o util.o
 CFLAGS += -fPIC -fvisibility=hidden
 
 $(lib) : $(objects)
 	$(LD) -shared -soname=$(lib) -o $(lib) $(objects)
 
-average.o : conflict.h libstupid.h
+libstupid.o : conflict.h libstupid.h
 conflict.o : conflict.h
 
 .PHONY : clean
