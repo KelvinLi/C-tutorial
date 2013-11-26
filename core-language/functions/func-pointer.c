@@ -1,33 +1,58 @@
 #include <stdio.h>
+#include <string.h>
 
 int
-boil (int x, int y)
+multiply_operator (int x, int y)
 {
-    printf ("boil got: %d, %d\n", x, y);
-    return x + y;
+    fputs ("> multiply_operator got: ", stdout);
+    printf ("%d, %d\n", x, y);
+    return x * y;
 }
 
 int
-fry (int x, int y)
+difference_operator (int x, int y)
 {
-    printf ("fry got: %d, %d\n", x, y);
+    fputs ("> difference_operator got: ", stdout);
+    printf ("%d, %d\n", x, y);
     return x - y;
+}
+
+int
+(*get_operator_by_name (const char *name))
+(int, int)
+{
+    if (! strcmp (name, "times"))
+        return multiply_operator;
+    if (! strcmp (name, "minus"))
+        return difference_operator;
+    return NULL;
 }
 
 int
 main (int argc, char **argv)
 {
-    int (* cook_method) (int, int);
-    int tmp;
+    int (*binary_operator) (int, int);
 
-    cook_method = fry;
-    tmp = cook_method (4, 3);
+    fputs ("=== Direct assignment to function pointer ===\n", stdout);
+    binary_operator = multiply_operator;
+    printf ("%d\n", binary_operator (4, 3));
 
-    cook_method = boil;
-    tmp = cook_method (6, tmp);
+    binary_operator = difference_operator;
+    printf ("%d\n", binary_operator (4, 3));
 
-    cook_method = fry;
-    cook_method (tmp, tmp);
+    fputs ("\n", stdout);
+
+    fputs ("=== Lookup by name ===\n", stdout);
+    binary_operator = get_operator_by_name ("times");
+    printf ("%d\n", binary_operator (5, 8));
+
+    binary_operator = get_operator_by_name ("minus");
+    printf ("%d\n", binary_operator (5, 8));
+
+    fputs ("\n", stdout);
+
+    fputs ("=== Skip assignment to function pointer === \n", stdout);
+    printf ("%d\n", get_operator_by_name ("times") (-2, 3));
 
     return 0;
 }
