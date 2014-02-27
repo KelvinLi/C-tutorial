@@ -14,7 +14,7 @@ main (int argc, char **argv)
     /* Note: each element of 'names' is of type (char *), while the types of
      * a, b, and c are (char [6]), (char [4]), and (char [6]), respectively.
      *
-     * See README for semantics of assigning a pointer to an array.
+     * See README for semantics of assigning an array to a pointer.
      */
     names[0] = a;
     names[1] = b;

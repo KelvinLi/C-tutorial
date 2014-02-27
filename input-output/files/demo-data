@@ -1,4 +1,1 @@
-Some example data.
-
-simple-read will dump this
-file to standard output.
+simple-read will read and possibly scramble this file.

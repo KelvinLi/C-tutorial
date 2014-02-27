@@ -5,11 +5,10 @@
 int
 main (int argc, char **argv)
 {
-    size_t i;
-    size_t j;
+    size_t i, j;
 
-    /* The compiler infers only the outermost array dimension.
-     * The inner array dimension(s) must be constant size as well.
+    /* The compiler can automatically infer
+     * only the outermost array dimension.
      */
     int values[][4] = {
         {41, 31, 21, 11},

@@ -1,4 +1,4 @@
-The "simple" data model concepts (array, pointer, struct) can be combined in
+The "primitive" data types (array, pointer, struct) can be combined in
 numerous ways:
   - array of arrays      (array-multidim.c)
   - array of pointers    (array-pointer.c)
@@ -27,9 +27,9 @@ Storage:
 Re-assignment:
   - Arrays cannot be reassigned -- this is conceptually meaningless, as arrays
     are merely labels for the underlying storage space.
-  - The value of a pointer is a memory address, which can be changed; if
-    a pointer is reassigned to an array, the pointer's value will be the
-    address of the first element.
+  - The value of a pointer is a memory address, which can be changed; if a
+    pointer is assigned an array, the pointer's value will be the address of
+    the first element of the array.
 
 Initialization at declaration:
   - Array initialization sets the contents to defined, constant values.
@@ -39,13 +39,14 @@ Initialization at declaration:
     its address. Modifying the string via the pointer will crash the process.
     (great fun!)
 
-As function arguments:
-  - Pointers, as any other data type, are copied.
+When passed as function arguments:
+  - Pointers, as any other data type, are copied. Note that only the pointer's
+    value is copied, not the thing pointed at.
   - Passing an array implicitly creates a new pointer to the first element. The
     array contents are not touched.
 
 NULL value:
-  - Pointer values can be set to NULL, the zero address. Dereferencing such a
+  - Pointers can be assigned NULL, the zero address. Dereferencing such a
     pointer will crash the process. (great fun!)
-  - "Setting an array to NULL" is meaningless. As a completely different
+  - "Assigning an array NULL" is meaningless. As a completely different
     concept, the elements of an array can be set to zero.

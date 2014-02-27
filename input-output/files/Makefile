@@ -1,5 +1,7 @@
 bin := simple-read
 
+CFLAGS := -Wall -Wextra
+
 .PHONY : all
 all : $(bin)
 
